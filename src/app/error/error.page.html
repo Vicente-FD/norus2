@@ -1,0 +1,16 @@
+<ion-header [translucent]="true" class="ion-color-primary">
+  <ion-toolbar> 
+    <ion-title>ERROR 404</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-text-center">
+  <!-- Muestra la imagen centrada -->
+  <ion-img src="assets/images/error_404.svg"></ion-img>
+  
+  
+  <!-- Agrega un botón para redirigir al home -->
+  <ion-button (click)="redirectToHome()" expand="full">Ir a Inicio</ion-button>
+
+  <p class="ion-padding">Lo sentimos, la página que buscas no se encuentra.</p>
+</ion-content>

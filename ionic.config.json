@@ -1,0 +1,7 @@
+{
+  "name": "norus2",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

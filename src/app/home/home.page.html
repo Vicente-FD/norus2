@@ -1,0 +1,30 @@
+<ion-content [fullscreen]="true">
+  <ion-header>
+    <ion-toolbar color="primary">
+      <ion-title>Login</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+
+  <!-- INPUTS -->
+  <!-- Campo de Usuario -->
+  <ion-item>
+    <ion-label position="stacked">Usuario</ion-label>
+    <ion-icon slot="start" name="person"></ion-icon>
+    <ion-input [(ngModel)]="usuario" placeholder="Ingrese su usuario" maxlength="8"></ion-input>
+  </ion-item>
+  <div class="error-message">{{ getUsernameErrorMessage() }}</div>
+  
+  <ion-item>
+    <ion-label position="stacked">Contraseña</ion-label>
+    <ion-icon slot="start" name="lock-closed"></ion-icon>
+    <ion-input type="password" [(ngModel)]="password" placeholder="Ingrese su contraseña" maxlength="4" pattern="[0-9]*"></ion-input>
+  </ion-item>
+  <div class="error-message">{{ getPasswordErrorMessage() }}</div>
+  
+  <!-- BOTONES -->
+  <ion-button expand="block" (click)="login()" class="ion-margin-top rounded-button">Iniciar Sesión</ion-button>
+  
+  <ion-button expand="block" (click)="olvidarNombre()" class="ion-margin-top">Limpiar campos</ion-button>
+  
+</ion-content>

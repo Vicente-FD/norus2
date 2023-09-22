@@ -1,0 +1,46 @@
+<ion-header [translucent]="true">
+  <ion-header>
+    <ion-toolbar color="primary">
+      <ion-title>Registro</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card-header>
+     ¡Bienvenido, {{ tempUsername }}!
+  </ion-card-header>
+
+
+  <div class="home-form ion-padding center">
+    <div class="form-input">
+        <ion-list>
+          <ion-item >
+            <ion-input label="Nombre" placeholder="Ingrese su nombre" type="text" [(ngModel)]="nombre" required></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input label="Apellido" placeholder="Ingrese su apellido"  type="text" [(ngModel)]="apellido" required ></ion-input>
+          </ion-item>
+
+          <ion-item>
+          <ion-label position="stacked">Nivel de Educación</ion-label>
+          <ion-select name="nivelEducacion" [(ngModel)]="nivelEducacional" required>
+            <ion-select-option value="Educación Preescolar">Educación Preescolar</ion-select-option>
+            <ion-select-option value="Básica">Básica</ion-select-option>
+            <ion-select-option value="Media">Media</ion-select-option>
+            <ion-select-option value="Superior">Superior</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Fecha de Nacimiento</ion-label>
+          <ion-datetime name="fechaNacimiento" displayFormat="MM/DD/YYYY" pickerFormat="MM/DD/YYYY" [(ngModel)]="fechaNacimiento" required presentation = "date">></ion-datetime>
+        </ion-item>
+          
+        <ion-button expand="block" (click)="mostrarYGuardarDatos()">Mostrar y Guardar Datos</ion-button>
+        </ion-list>
+    </div>
+  </div>   
+  <div class="action-button ion-padding">
+    <ion-button size="small" class="clean-button" slot="end" (click)="limpiar()" (click)="ejecutarAnimacion()">Limpiar</ion-button>
+  </div>
+</ion-content>

@@ -1,0 +1,13 @@
+.center-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Esto centra verticalmente en toda la altura de la pantalla */
+  }
+  
+  /* Puedes ajustar el tamaño de la imagen si es necesario */
+  img {
+    max-width: 100%;
+    max-height: 100%;
+  }
