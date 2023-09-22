@@ -13,8 +13,8 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'segment',
-    redirectTo: 'segment',
+    path: 'datos',
+    redirectTo: 'datos',
     pathMatch: 'full'
   },
   {
@@ -40,14 +40,15 @@ const routes: Routes = [
   {
     path: 'registro',
     loadChildren: () => import('./registro/registro.module').then( m => m.RegistroPageModule)
-  },{
-  path: 'segment',
-  loadChildren: () => import('./segment/segment.module').then( m => m.SegmentPageModule)
   }
 ,
   {
     path: 'error',
     loadChildren: () => import('./error/error.module').then( m => m.ErrorPageModule)
+  },
+  {
+    path: 'datos',
+    loadChildren: () => import('./datos/datos.module').then( m => m.DatosPageModule)
   }
 ];
 

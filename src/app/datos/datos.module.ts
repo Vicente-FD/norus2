@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { SegmentPageRoutingModule } from './segment-routing.module';
+import { DatosPageRoutingModule } from './datos-routing.module';
 
-import { SegmentPage } from './segment.page';
+import { DatosPage } from './datos.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    SegmentPageRoutingModule
+    DatosPageRoutingModule
   ],
-  declarations: [SegmentPage]
+  declarations: [DatosPage]
 })
-export class SegmentPageModule {}
+export class DatosPageModule {}

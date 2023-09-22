@@ -1,0 +1,44 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>datos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Datos Registrados</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-card *ngIf="datosRegistro">
+    <ion-card-header>
+      <ion-card-title>Detalles del Registro</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item>
+          <ion-label>Nombre:</ion-label>
+          <ion-text>{{ datosRegistro.nombre }}</ion-text>
+        </ion-item>
+        <ion-item>
+          <ion-label>Apellido:</ion-label>
+          <ion-text>{{ datosRegistro.apellido }}</ion-text>
+        </ion-item>
+        <ion-item>
+          <ion-label>Nivel de Educación:</ion-label>
+          <ion-text>{{ datosRegistro.nivelEducacional }}</ion-text>
+        </ion-item>
+        <ion-item>
+          <ion-label>Fecha de Nacimiento:</ion-label>
+          <ion-text>{{ datosRegistro.fechaNacimiento }}</ion-text>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+  <ion-card *ngIf="!datosRegistro">
+    <ion-card-header>
+      <ion-card-title>Sin datos registrados</ion-card-title>
+    </ion-card-header>
+  </ion-card>
+</ion-content>

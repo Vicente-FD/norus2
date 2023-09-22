@@ -4,24 +4,39 @@
       <ion-title>Registro</ion-title>
     </ion-toolbar>
   </ion-header>
+</ion-header>
 
 <ion-content [fullscreen]="true">
+  <!-- Segment control -->
+  <ion-segment [(ngModel)]="segmentValue">
+    <!-- Opciones del segmento -->
+    <ion-segment-button value="registro">
+      Registro
+    </ion-segment-button>
+    <ion-segment-button value="experienciaLaboral">
+      Experiencia Laboral
+    </ion-segment-button>
+    <ion-segment-button value="certificaciones">
+      Certificaciones
+    </ion-segment-button>
+  </ion-segment>
+
+  <!-- Contenido de acuerdo al segmento seleccionado -->
   <ion-card-header>
-     ¡Bienvenido, {{ tempUsername }}!
+    ¡Bienvenido, {{ tempUsername }}!
   </ion-card-header>
 
-
-  <div class="home-form ion-padding center">
+  <!-- Contenido del segmento "Registro" -->
+  <div *ngIf="segmentValue === 'registro'" class="home-form ion-padding center">
     <div class="form-input">
-        <ion-list>
-          <ion-item >
-            <ion-input label="Nombre" placeholder="Ingrese su nombre" type="text" [(ngModel)]="nombre" required></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-input label="Apellido" placeholder="Ingrese su apellido"  type="text" [(ngModel)]="apellido" required ></ion-input>
-          </ion-item>
-
-          <ion-item>
+      <ion-list>
+        <ion-item>
+          <ion-input label="Nombre" placeholder="Ingrese su nombre" type="text" [(ngModel)]="nombre" required></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input label="Apellido" placeholder="Ingrese su apellido"  type="text" [(ngModel)]="apellido" required ></ion-input>
+        </ion-item>
+        <ion-item>
           <ion-label position="stacked">Nivel de Educación</ion-label>
           <ion-select name="nivelEducacion" [(ngModel)]="nivelEducacional" required>
             <ion-select-option value="Educación Preescolar">Educación Preescolar</ion-select-option>
@@ -30,16 +45,47 @@
             <ion-select-option value="Superior">Superior</ion-select-option>
           </ion-select>
         </ion-item>
-
         <ion-item>
           <ion-label position="stacked">Fecha de Nacimiento</ion-label>
-          <ion-datetime name="fechaNacimiento" displayFormat="MM/DD/YYYY" pickerFormat="MM/DD/YYYY" [(ngModel)]="fechaNacimiento" required presentation = "date">></ion-datetime>
+          <ion-datetime name="fechaNacimiento" displayFormat="MM/DD/YYYY" pickerFormat="MM/DD/YYYY" [(ngModel)]="fechaNacimiento" required presentation="date"></ion-datetime>
         </ion-item>
-          
         <ion-button expand="block" (click)="mostrarYGuardarDatos()">Mostrar y Guardar Datos</ion-button>
-        </ion-list>
+      </ion-list>
     </div>
-  </div>   
+  </div>
+
+  <!-- Contenido del segmento "Experiencia Laboral" -->
+  <ion-content *ngIf="segmentValue === 'experienciaLaboral'">
+    <ion-item-divider class="custom-divider">Experiencia Laboral</ion-item-divider>
+    <ion-item>
+      <ion-input placeholder="Empresa" [(ngModel)]="empresa"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input placeholder="Año inicio" [(ngModel)]="anoInicio"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-checkbox [(ngModel)]="trabajaActualmente">Si actualmente trabaja aquí</ion-checkbox>
+    </ion-item>
+    <ion-item *ngIf="!trabajaActualmente">
+      <ion-input placeholder="Año término" [(ngModel)]="anoTermino"></ion-input>
+    </ion-item>
+  </ion-content>
+
+  <!-- Contenido del segmento "Certificaciones" -->
+  <ion-content *ngIf="segmentValue === 'certificaciones'">
+    <ion-item-divider class="custom-divider">Certificaciones</ion-item-divider>
+    <ion-item>
+      <ion-input placeholder="Nombre Certificado" [(ngModel)]="nombreCertificado"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input placeholder="Fecha de Obtención" [(ngModel)]="fechaObtencion"></ion-input>
+    </ion-item>
+    <ion-checkbox [(ngModel)]="certificadoVencimiento">El certificado vence</ion-checkbox>
+    <ion-item *ngIf="certificadoVencimiento">
+      <ion-input placeholder="Fecha de Vencimiento" [(ngModel)]="fechaVencimiento"></ion-input>
+    </ion-item>
+  </ion-content>
+
   <div class="action-button ion-padding">
     <ion-button size="small" class="clean-button" slot="end" (click)="limpiar()" (click)="ejecutarAnimacion()">Limpiar</ion-button>
   </div>

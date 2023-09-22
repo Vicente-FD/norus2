@@ -12,6 +12,7 @@ export class RegistroPage {
   @ViewChildren(IonInput, { read: ElementRef }) inputs!: QueryList<ElementRef>;
 
   tempUsername: string | null = localStorage.getItem('tempUsername');
+  segmentValue: string = 'registro'; // Propiedad para el valor del segmento actual
 
   private animacionInputs!: Animation;
   private input1!: Animation;
@@ -28,11 +29,27 @@ export class RegistroPage {
   apellido: string = '';
   nivelEducacional: string = '';
   fechaNacimiento: string = '';
+  empresa: string = '';
+  anoInicio: string = '';
+  trabajaActualmente: boolean = false;
+  anoTermino: string = '';
+  nombreCertificado: string = '';
+  fechaObtencion: string = '';
+  certificadoVencimiento: boolean = false;
+  fechaVencimiento: string = '';
 
   limpiar() {
     this.nombre = '';
     this.apellido = '';
     this.nivelEducacional = '';
+    this.empresa = '';
+    this.anoInicio = '';
+    this.trabajaActualmente = false;
+    this.anoTermino = '';
+    this.nombreCertificado = '';
+    this.fechaObtencion = '';
+    this.certificadoVencimiento = false;
+    this.fechaVencimiento = '';
   }
 
   ngAfterViewInit() {
@@ -81,6 +98,6 @@ export class RegistroPage {
     localStorage.setItem('datosRegistro', JSON.stringify(datos));
 
     // Navegar a la página "segment"
-    this.router.navigate(['/segment']);
+    this.router.navigate(['/datos']);
   }
 }
