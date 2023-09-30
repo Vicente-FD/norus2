@@ -1,0 +1,9 @@
+<ion-content [fullscreen]="true">
+  <ion-list *ngIf="datosRegiones && datosRegiones.length > 0">
+    <ion-item *ngFor="let region of datosRegiones">
+      {{ region.nombre }}
+    </ion-item>
+  </ion-list>
+<h3>HOLA</h3>
+  <ion-label *ngIf="!datosRegiones || datosRegiones.length === 0">Sin datos disponibles</ion-label>
+</ion-content>

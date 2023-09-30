@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Storage } from '@ionic/storage-angular';
 
 @Component({
   selector: 'app-datos',
@@ -6,15 +7,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./datos.page.scss'],
 })
 export class DatosPage {
-  datosRegistro: any; // Variable para almacenar los datos recuperados
+  datosRegistro: any = {}; // Inicializar como objeto vacío
 
-  constructor() {}
+  constructor(private storage: Storage) {}
 
   ionViewWillEnter() {
-    // Recuperar los datos guardados en localStorage
-    const datos = localStorage.getItem('datosRegistro');
-    if (datos) {
-      this.datosRegistro = JSON.parse(datos);
-    }
+    // Recuperar los datos desde Ionic Storage usando la misma clave 'datos' que usaste en la página de registro
+    this.storage.get('datos').then((datos) => {
+      if (datos) {
+        this.datosRegistro = datos;
+      }
+    });
   }
 }

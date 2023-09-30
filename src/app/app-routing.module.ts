@@ -18,6 +18,11 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: 'apivista',
+    redirectTo: 'apivista',
+    pathMatch: 'full'
+  },
+  {
     path:'error',
     redirectTo: 'error',
     pathMatch: 'full'
@@ -49,6 +54,10 @@ const routes: Routes = [
   {
     path: 'datos',
     loadChildren: () => import('./datos/datos.module').then( m => m.DatosPageModule)
+  },
+  {
+    path: 'apivista',
+    loadChildren: () => import('./apivista/apivista.module').then( m => m.ApivistaPageModule)
   }
 ];
 

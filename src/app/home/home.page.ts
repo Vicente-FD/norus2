@@ -46,4 +46,9 @@ export class HomePage implements OnInit {
     }
     return '';
   }
+
+  irAVistaAPI() {
+    // Redirige a la vista API (ajusta la ruta según tu configuración)
+    this.router.navigate(['/apivista']);
+  }
 }

@@ -1,7 +1,6 @@
 import { Component, ElementRef, QueryList, ViewChildren } from '@angular/core';
-import { Router } from '@angular/router'; // Importar el Router
-import { AlertController, AnimationController, IonInput } from '@ionic/angular';
-import type { Animation } from '@ionic/angular';
+import { Storage } from '@ionic/storage-angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registro',
@@ -9,21 +8,6 @@ import type { Animation } from '@ionic/angular';
   styleUrls: ['./registro.page.scss'],
 })
 export class RegistroPage {
-  @ViewChildren(IonInput, { read: ElementRef }) inputs!: QueryList<ElementRef>;
-
-  tempUsername: string | null = localStorage.getItem('tempUsername');
-  segmentValue: string = 'registro'; // Propiedad para el valor del segmento actual
-
-  private animacionInputs!: Animation;
-  private input1!: Animation;
-  private input2!: Animation;
-
-  constructor(
-    private animationCtrl: AnimationController,
-    private alertController: AlertController,
-    private router: Router // Inyectar el Router
-  ) {}
-
   usuario: string = '';
   nombre: string = '';
   apellido: string = '';
@@ -38,10 +22,29 @@ export class RegistroPage {
   certificadoVencimiento: boolean = false;
   fechaVencimiento: string = '';
 
+  segmentValue: string = '';
+  tempUsername: string = '';
+
+  @ViewChildren('input') inputs!: QueryList<ElementRef>;
+  animacionInputs: any;
+
+  constructor(private storage: Storage, private router: Router) {
+    // Inicializa Ionic Storage
+    this.initStorage();
+    // Constructor de tu página
+  }
+
+  // Inicializa Ionic Storage
+  async initStorage() {
+    await this.storage.create();
+  }
+
   limpiar() {
+    // Este es el método para limpiar los campos
     this.nombre = '';
     this.apellido = '';
     this.nivelEducacional = '';
+    this.fechaNacimiento = '';
     this.empresa = '';
     this.anoInicio = '';
     this.trabajaActualmente = false;
@@ -52,16 +55,8 @@ export class RegistroPage {
     this.fechaVencimiento = '';
   }
 
-  ngAfterViewInit() {
-    this.animacionInputs = this.animationCtrl
-      .create()
-      .duration(1000)
-      .iterations(1)
-      .fromTo('transform', 'translateX(0px)', 'translateX(100%)')
-      .fromTo('opacity', '1', '0.2');
-  }
-
   ejecutarAnimacion() {
+    // Este es el método para ejecutar la animación
     let transformInicial: string;
     let opacidadInicial: string;
 
@@ -86,18 +81,20 @@ export class RegistroPage {
     });
   }
 
+  // Función para mostrar y guardar datos
   async mostrarYGuardarDatos() {
-    const datos = {
+    const data = {
       usuario: this.usuario,
       nombre: this.nombre,
       apellido: this.apellido,
       nivelEducacional: this.nivelEducacional,
-      fechaNacimiento: this.fechaNacimiento,
+      // Agrega otras propiedades aquí
     };
 
-    localStorage.setItem('datosRegistro', JSON.stringify(datos));
+    // Guarda los datos en Ionic Storage
+    await this.storage.set('datos', data);
 
-    // Navegar a la página "segment"
+    // Navega a la ventana "datos"
     this.router.navigate(['/datos']);
   }
 }
