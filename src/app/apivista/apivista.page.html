@@ -1,9 +1,25 @@
 <ion-content [fullscreen]="true">
-  <ion-list *ngIf="datosRegiones && datosRegiones.length > 0">
-    <ion-item *ngFor="let region of datosRegiones">
-      {{ region.nombre }}
+  <!-- Input para ingresar el ID -->
+  <ion-item>
+    <ion-label position="stacked">ID de la región</ion-label>
+    <ion-input [(ngModel)]="idBuscado" type="number" placeholder="Ingrese el ID"></ion-input>
+  </ion-item>
+
+  <!-- Botón para buscar -->
+  <ion-button expand="block" (click)="buscarRegion()">Buscar</ion-button>
+
+  <!-- Resultado de la búsqueda -->
+  <ion-list *ngIf="nombreRegion">
+    <ion-item>
+      <ion-label>ID de la región:</ion-label>
+      <ion-label>{{ idBuscado }}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Nombre de la región:</ion-label>
+      <ion-label>{{ nombreRegion }}</ion-label>
     </ion-item>
   </ion-list>
-<h3>HOLA</h3>
-  <ion-label *ngIf="!datosRegiones || datosRegiones.length === 0">Sin datos disponibles</ion-label>
+
+  <!-- Mensaje si no hay datos disponibles -->
+  <ion-label *ngIf="!nombreRegion">Sin datos disponibles</ion-label>
 </ion-content>

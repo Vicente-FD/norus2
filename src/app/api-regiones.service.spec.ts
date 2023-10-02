@@ -1,13 +1,12 @@
 import { TestBed } from '@angular/core/testing';
+import { ApiRegiones } from './api-regiones.service';
 
-import { ApiRegionesService } from './api-regiones.service';
-
-describe('ApiRegionesService', () => {
-  let service: ApiRegionesService;
+describe('ApiRegiones', () => {
+  let service: ApiRegiones;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(ApiRegionesService);
+    service = TestBed.inject(ApiRegiones);
   });
 
   it('should be created', () => {
